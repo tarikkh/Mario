@@ -3,7 +3,6 @@ package org.trkh.mario.jade;
 import org.lwjgl.Version;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.GLFW_FALSE;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
 import static org.lwjgl.glfw.GLFW.GLFW_MAXIMIZED;
 import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
 import static org.lwjgl.glfw.GLFW.GLFW_TRUE;
@@ -41,16 +40,11 @@ public class Window {
     private String title;
     private static Window window = null;
     private long glfwWindow;
-    private float r, g, b, a;
 
     private Window() {
         this.width = 1920;
         this.height = 1080;
         this.title = "Mario";
-        this.r = 0;
-        this.g = 0;
-        this.b = 0;
-        this.a = 0;
     }
 
     public static Window get() {
@@ -127,22 +121,8 @@ public class Window {
             // poll events
             glfwPollEvents();
 
-            glClearColor(r, g, b, a);
+            glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
-
-            if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
-                this.r = 1;
-                this.g = 1;
-                this.b = 1;
-                this.a = 1;
-                glClearColor(r, g, b, a);
-                glClear(GL_COLOR_BUFFER_BIT);
-            }
-
-            this.r = 0;
-            this.g = 0;
-            this.b = 0;
-            this.a = 0;
 
             glfwSwapBuffers(glfwWindow);
         }
